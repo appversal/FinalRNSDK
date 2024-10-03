@@ -1,7 +1,10 @@
 {
   "name": "@appstorys/appstorys-react-native",
-  "version": "0.1.0",
-  "description": "qwe",
+  "version": "1.0.10",
+  "private": false,
+  "author": "Anirudh Tyagi",
+  "license": "ISC",
+  "description": "Official React Native SDK for integrating AppStorys services into a react native application.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -47,20 +50,23 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "sdk",
+    "appstorys",
+    "appstorys-react-native"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mykyta-rusyn/appstorys-appstorys-react-native.git"
-  },
-  "author": "Mykyta <nikrus1275@gmail.com> (https://github.com/mykyta-rusyn)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mykyta-rusyn/appstorys-appstorys-react-native/issues"
-  },
-  "homepage": "https://github.com/mykyta-rusyn/appstorys-appstorys-react-native#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "react": "^18.3.1",
+    "react-native": "^0.75.3",
+    "react-native-encrypted-storage": "^4.0.3",
+    "react-native-gesture-handler": "^2.19.0",
+    "react-native-reanimated": "^3.15.3",
+    "react-native-video": "^6.6.2"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
@@ -81,30 +87,26 @@
     "react-native-builder-bob": "^0.30.2",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "react-native-encrypted-storage": "^4.0.3",
+    "react-native-gesture-handler": "^2.19.0",
+    "react-native-reanimated": "^3.15.3",
+    "react-native-video": "^6.6.2"
   },
   "resolutions": {
     "@types/react": "^18.2.44"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
-  "workspaces": [
-    "example"
-  ],
-  "packageManager": "yarn@3.6.1",
-  "jest": {
-    "preset": "react-native",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "react": "^18.3.1",
+    "react-native": "^0.75.3",
+    "react-native-encrypted-storage": "^4.0.3",
+    "react-native-gesture-handler": "^2.19.0",
+    "react-native-reanimated": "^3.15.3",
+    "react-native-video": "^6.6.2"
   },
   "release-it": {
     "git": {
@@ -122,37 +124,6 @@
         "preset": "angular"
       }
     }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native",
-      "prettier"
-    ],
-    "rules": {
-      "react/react-in-jsx-scope": "off",
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
   },
   "react-native-builder-bob": {
     "source": "src",
