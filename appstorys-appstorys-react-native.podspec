@@ -36,6 +36,11 @@ Pod::Spec.new do |s|
       s.dependency "RCTRequired"
       s.dependency "RCTTypeSafety"
       s.dependency "ReactCommon/turbomodule/core"
+      s.dependency "RNGestureHandler"
+      s.dependency "react-native-encrypted-storage"
+      s.dependency "react-native-video"
+      s.dependency "RNScreens"
+      s.dependency "react-native-safe-area-context"
     end
   end
 end

@@ -60,14 +60,8 @@
   },
   "homepage": "https://github.com/appversal/FinalRNSDK.git",
   "dependencies": {
-    "@react-navigation/bottom-tabs": "^6.6.1",
-    "@react-navigation/native": "^6.1.18",
     "react": "^18.3.1",
-    "react-native": "^0.75.3",
-    "react-native-encrypted-storage": "^4.0.3",
-    "react-native-gesture-handler": "^2.19.0",
-    "react-native-reanimated": "^3.15.3",
-    "react-native-video": "^6.6.2"
+    "react-native": "^0.75.3"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
