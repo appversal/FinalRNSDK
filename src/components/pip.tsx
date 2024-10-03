@@ -173,7 +173,7 @@ const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
             </View>
 
             <TouchableOpacity onPress={closePip} style={isExpanded ? styles.expandedClosePipButton : styles.closePipButton}>
-              <Image source= {require('./assets/images/close.png')} style={isExpanded ? styles.expandedClosePipButtonText : styles.closePipButtonText} />
+              <Image source= {require('../assets/images/close.png')} style={isExpanded ? styles.expandedClosePipButtonText : styles.closePipButtonText} />
             </TouchableOpacity>
 
             {data && data.details && data.details.link && (

@@ -43,7 +43,7 @@ const Banner: React.FC<BannerProps> = ({data, user_id, access_token}) => {
                     >
                         <Image source = {{uri: data.details.image}} style = {[styles.banner, { width: width * 0.92, height: height * 0.1 }]} />
                     <TouchableOpacity onPress={closeBanner} style={styles.closeButton}>
-                        <Image source={require('./assets/images/close.png')} style={styles.closeIcon} />
+                        <Image source={require('../assets/images/close.png')} style={styles.closeIcon} />
                     </TouchableOpacity>
                     </TouchableOpacity>
                     </View>
