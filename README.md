@@ -1,6 +1,6 @@
 # @appstorys/appstorys-react-native
 
-qwe
+Official React Native SDK for integrating AppStorys services into a react native application
 
 ## Installation
 

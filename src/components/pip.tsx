@@ -89,6 +89,9 @@ const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
       const newX = position.x + tx;
       const newY = position.y + ty;
       const nearestCorner = getNearestCorner(newX, newY);
+      if (!nearestCorner) {
+        return;
+      }
       animateToCorner(nearestCorner);
       setPosition(nearestCorner);
       translationX.setValue(0);

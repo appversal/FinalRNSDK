@@ -5,7 +5,7 @@
   "author": "Anirudh Tyagi",
   "license": "ISC",
   "description": "Official React Native SDK for integrating AppStorys services into a react native application.",
-  "source": "./src/index.tsx",
+  "source": "./src/index.ts",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
   "exports": {
@@ -72,6 +72,8 @@
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",
     "@react-native/eslint-config": "^0.73.1",
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^29.5.5",
     "@types/react": "^18.2.44",
@@ -85,15 +87,13 @@
     "react": "18.3.1",
     "react-native": "0.75.4",
     "react-native-builder-bob": "^0.30.2",
-    "release-it": "^15.0.0",
-    "turbo": "^1.10.7",
-    "typescript": "^5.2.2",
-    "@react-navigation/bottom-tabs": "^6.6.1",
-    "@react-navigation/native": "^6.1.18",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.19.0",
     "react-native-reanimated": "^3.15.3",
-    "react-native-video": "^6.6.2"
+    "react-native-video": "^6.6.2",
+    "release-it": "^15.0.0",
+    "turbo": "^1.10.7",
+    "typescript": "^5.2.2"
   },
   "resolutions": {
     "@types/react": "^18.2.44"
@@ -144,7 +144,6 @@
       [
         "typescript",
         {
-          "project": "tsconfig.build.json",
           "esm": true
         }
       ]
@@ -154,5 +153,10 @@
     "type": "module-legacy",
     "languages": "kotlin-objc",
     "version": "0.41.2"
-  }
+  },
+  "types": "./lib/typescript/commonjs/src/index.d.ts",
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ]
 }
