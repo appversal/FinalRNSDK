@@ -9,6 +9,10 @@ export const verifyAccount = async (account_id: string, app_id: string) => {
                 account_id,
                 app_id
             }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
         })
         if (response.ok){
             const data = await response.json()

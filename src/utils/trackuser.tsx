@@ -27,8 +27,6 @@ export const trackUser = async (user_id: string, attributes: Attributes) => {
         if(!response.ok){
             throw new Error('Something went wrong');
         }
-        const data = await response.json();
-        console.log(data);
     } catch (error) {
         console.error('Error in trackUser', error);
     }

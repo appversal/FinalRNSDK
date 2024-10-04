@@ -1,7 +1,7 @@
-// Stories.tsx
+// StoryScreen.tsx
 import React from 'react';
 import { View, Text, ScrollView, Image, TouchableWithoutFeedback, StyleSheet } from 'react-native';
-import { useNavigation , NavigationProp} from '@react-navigation/native';
+import { useNavigation , NavigationProp, RouteProp, useRoute} from '@react-navigation/native';
 
 
 interface StoryGroup {
@@ -21,24 +21,23 @@ type RootStackParamList = {
     StoryScreen: { storySlideData: StoryGroup; storyCampaignId: string };
   };
 
-const StoryScreen: React.FC<StoriesProps> = ({ data }) => {
+const StoryScreen: React.FC = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+    const {params} = useRoute<RouteProp<RootStackParamList, 'StoryScreen'>>();
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {data && data.details && Array.isArray(data.details) ? (
-          data.details.map((storyGroup, index) => (
-            <View key={index} style={styles.storyGroup}>
+        {params.storySlideData ? (
+            <View style={styles.storyGroup}>
               <TouchableWithoutFeedback
-                onPress={() => navigation.navigate('StoryScreen', { storySlideData: storyGroup, storyCampaignId: data.id })}
+                onPress={() => navigation.navigate('StoryScreen', params)}
               >
-                <View style={[styles.ring, { borderColor: storyGroup.ringColor }]}>
-                  <Image source={{ uri: storyGroup.thumbnail }} style={styles.thumbnail} />
+                <View style={[styles.ring, { borderColor: params.storySlideData.ringColor }]}>
+                  <Image source={{ uri: params.storySlideData.thumbnail }} style={styles.thumbnail} />
                 </View>
               </TouchableWithoutFeedback>
-              <Text style={styles.storyName}>{storyGroup.name}</Text>
+              <Text style={styles.storyName}>{params.storySlideData.name}</Text>
             </View>
-          ))
         ) : (
           <View>
             <Text style={styles.noDataText}>No data available</Text>

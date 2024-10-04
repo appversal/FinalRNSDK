@@ -11,7 +11,7 @@ declare class AppStorys {
     } | undefined>;
     verifyAccount(account_id: string, app_id: string): Promise<void>;
     static Stories: import("react").FC<import("./components/stories").StoriesProps>;
-    static StoryScreen: import("react").FC<import("./components/storyscreen").StoriesProps>;
+    static StoryScreen: import("react").FC<{}>;
     static Floater: import("react").FC<import("./components/floater").FloaterProps>;
     static Pip: import("react").FC<import("./components/pip").PipProps>;
     static Banner: import("react").FC<import("./components/banner").BannerProps>;

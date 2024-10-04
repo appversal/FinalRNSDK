@@ -10,6 +10,6 @@ export interface StoriesProps {
         details: StoryGroup[];
     };
 }
-declare const StoryScreen: React.FC<StoriesProps>;
+declare const StoryScreen: React.FC;
 export default StoryScreen;
 //# sourceMappingURL=storyscreen.d.ts.map
