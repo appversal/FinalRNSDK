@@ -48,7 +48,7 @@ const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await UserActionTrack(data.id, user_id, 'IMP');
+        await UserActionTrack(user_id, data.id, 'IMP');
       } catch (error) {
         console.error('Error in fetching data:', error);
       }

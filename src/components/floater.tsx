@@ -20,7 +20,7 @@ const Floater: React.FC<FloaterProps> = ({ data, user_id, access_token }) => {
   useEffect(() => {
     const trackImpression = async () => {
       try {
-        await UserActionTrack(data.id, user_id, 'IMP');
+        await UserActionTrack(user_id, data.id, 'IMP');
       } catch (error) {
         console.error('Error in tracking impression:', error);
       }
@@ -38,7 +38,7 @@ const Floater: React.FC<FloaterProps> = ({ data, user_id, access_token }) => {
             onPress={async () => {
               Linking.openURL(data.details.link);
               try {
-                await UserActionTrack(data.id, user_id, 'CLK');
+                await UserActionTrack(user_id, data.id, 'CLK');
               } catch (error) {
                 console.error('Error in tracking click:', error);
               }

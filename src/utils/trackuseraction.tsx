@@ -2,7 +2,7 @@ import EncryptedStorage from "react-native-encrypted-storage";
 
 
 type ActionType = 'IMP' | 'CLK' | 'CNV'
-export const UserActionTrack = async (user_id: string, campaign_id: string, action: ActionType) => {
+export const UserActionTrack = async (user_id: string, campaign_id: string, event_type: ActionType) => {
     try{
         const access_token = await EncryptedStorage.getItem('access_token');
         if (!access_token) {
@@ -17,7 +17,7 @@ export const UserActionTrack = async (user_id: string, campaign_id: string, acti
             body: JSON.stringify({
                 campaign_id,
                 user_id,
-                action
+                event_type
             }),
         });
         if(!response.ok){
