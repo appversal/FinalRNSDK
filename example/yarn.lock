@@ -10,10 +10,10 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@appstorys/appstorys-react-native@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.npmjs.org/@appstorys/appstorys-react-native/-/appstorys-react-native-1.0.13.tgz"
-  integrity sha512-t+RHn80qT/zkwEnuysIHB90k8Fhh/e5ls3+RtgDfKhRq9nweecaWICYciPJUvbN/jmNhtfagBLapsPctkLnwIQ==
+"@appstorys/appstorys-react-native@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.npmjs.org/@appstorys/appstorys-react-native/-/appstorys-react-native-1.0.14.tgz"
+  integrity sha512-8+Vx0q+nhF8qb22h+1KHF+kzhPbKTWHr64NThJHeq+K2Dw2Dr/ajLs1VXJ9jAc2dy1uZ0b8/3m2BPR/LT8vu5Q==
   dependencies:
     react "^18.3.1"
     react-native "^0.75.3"

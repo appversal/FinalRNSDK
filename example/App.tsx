@@ -13,7 +13,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {AppStorys, Stories, StoryScreen, UserData} from './src';
+import {AppStorys, Stories, StoryScreen, UserData} from '@appstorys/appstorys-react-native';
 
 const appId = '37ca2d75-8484-4cc1-97ed-d9475ce5a631';
 const accountId = '4e109ac3-be92-4a5c-bbe6-42e6c712ec9a';
