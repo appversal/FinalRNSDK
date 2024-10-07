@@ -1,38 +1,31 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { CampaignStory, UserData } from '../sdk';
 
-interface StoryGroup {
-  ringColor: string;
-  thumbnail: string;
-  name: string;
-}
-
-export interface StoriesProps {
-  data: {
-    id: string;
-    details: StoryGroup[];
-  };
-}
+type StoryGroup = CampaignStory['details'][0]
 
 type RootStackParamList = {
   StoryScreen: {
     storySlideData: StoryGroup;
     storyCampaignId: string;
+    user_id: string;
   };
 };
 
-const Stories: React.FC<StoriesProps> = ({ data }) => {
+const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const data = campaigns.find((val) => val.campaign_type === 'STR') as CampaignStory;
 
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {data && data.details && Array.isArray(data.details) ? (
+        {data?.details && Array.isArray(data.details) ? (
           data.details.map((storyGroup, index) => (
             <View key={index} style={styles.storyContainer}>
               <View style={styles.storyWrapper}>
-                <TouchableWithoutFeedback onPress={() => navigation.navigate('StoryScreen', { storySlideData: storyGroup, storyCampaignId: data.id })}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('StoryScreen', { storySlideData: storyGroup, storyCampaignId: data.id, user_id })}>
                   <View style={[styles.thumbnailContainer, { borderColor: storyGroup.ringColor }]}>
                     <Image source={{ uri: storyGroup.thumbnail }} style={styles.thumbnail} />
                   </View>
@@ -84,7 +77,7 @@ const styles = StyleSheet.create({
     width: 65,
     height: 65,
     borderRadius: 35,
-    overflow: 'hidden', 
+    overflow: 'hidden',
   },
   storyName: {
     marginTop: 6,

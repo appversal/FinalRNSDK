@@ -1,14 +1,85 @@
-import { trackUser } from "./utils/trackuser";
-import { UserActionTrack } from "./utils/trackuseraction";
-import { verifyUser } from "./utils/verifyuser";
-import { verifyAccount } from "./utils/verifyaccount";
-import { trackScreen } from "./utils/screen";
-import Banner from "./components/banner";
-import Floater from "./components/floater";
-import Pip from "./components/pip";
-import Stories from "./components/stories";
-import StoryScreen from "./components/storyscreen";
+import { trackUser } from './utils/trackuser';
+import { UserActionTrack } from './utils/trackuseraction';
+import { verifyUser } from './utils/verifyuser';
+import { verifyAccount } from './utils/verifyaccount';
+import { trackScreen } from './utils/screen';
+import Banner from './components/banner';
+import Floater from './components/floater';
+import Pip from './components/pip';
+import Stories from './components/stories';
+import {StoryScreen} from './components/storyscreen';
 
+export type StoryGroup = {
+  ringColor: string;
+  thumbnail: string;
+  name: string;
+}
+
+export type CampaignFloater = {
+  id: string,
+  campaign_type: 'FLT',
+  details: {
+    id: string,
+    image: string,
+    link: string | null
+  }
+}
+
+export type CampaignStory = {
+  id: string,
+  campaign_type: 'STR',
+  details: [
+    {
+      id: string,
+      name: string,
+      thumbnail: string,
+      ringColor: string,
+      order: number,
+      slides: [
+        {
+          id: string,
+          parent: string
+          image: null | string,
+          video: null | string,
+          link: null | string,
+          button_text: null | string,
+          order: number;
+          content: string | null
+        }
+      ]
+    },
+  ]
+}
+
+export type CampaignBanner = {
+    id: string,
+    campaign_type: 'BAN',
+    details: {
+      id: string,
+      image: string,
+      width: null | number,
+      height: null | number,
+      link: null | string,
+    }
+}
+
+export type CampaignPip = {
+  id: string
+  campaign_type: 'PIP',
+  details: {
+    small_video: string,
+    large_video: string,
+    link: string | null,
+    campaign: string,
+    screen: number,
+    redirectedTo: null | string
+  }
+}
+
+export type UserData = {
+    campaigns: Array<CampaignFloater | CampaignStory | CampaignBanner | CampaignPip>;
+    user_id: string;
+}
 
 class AppStorys {
 
@@ -35,7 +106,7 @@ class AppStorys {
         return await UserActionTrack(user_id, campaign_id, action);
     }
 
-    public async verifyUser(user_id: string, attributes?: any) {
+    public async verifyUser(user_id: string, attributes?: any): Promise<UserData | undefined> {
         return await verifyUser(user_id, this.campaigns, attributes);
     }
 

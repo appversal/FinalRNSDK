@@ -3,21 +3,16 @@ import React, { useEffect, useState} from 'react';
 import {View, Image, TouchableOpacity, Dimensions, Linking, StyleSheet} from 'react-native';
 
 import { UserActionTrack } from '../utils/trackuseraction';
+import { CampaignBanner, UserData } from '../sdk';
 
-export interface BannerProps {
-    data: {
-        id: string;
-        details: {
-            image: string;
-            link: string;
-        };
-    };
-    user_id: string;
+export type BannerProps = {
     access_token: string;
-}
+} & UserData
 
-const Banner: React.FC<BannerProps> = ({data, user_id, access_token}) => {
+const Banner: React.FC<BannerProps> = ({access_token,campaigns,user_id}) => {
     const [isBannerVisible, setIsBannerVisible] = useState(true);
+
+    const data = campaigns.find((val) => val.campaign_type === 'BAN') as CampaignBanner;
 
     useEffect(()=> {
         if(data && data.id) {
@@ -37,7 +32,9 @@ const Banner: React.FC<BannerProps> = ({data, user_id, access_token}) => {
                 <View style={styles.container}>
                     <TouchableOpacity onPress={() => {
                         UserActionTrack(user_id, data.id, 'CLK');
-                        Linking.openURL(data.details.link);
+                        if (data.details.link) {
+                            Linking.openURL(data.details.link);
+                        }
                     }}
                     style = {[styles.banner, { width: width * 0.92, height: height * 0.1 }]}
                     >
@@ -49,7 +46,7 @@ const Banner: React.FC<BannerProps> = ({data, user_id, access_token}) => {
                     </View>
             )}
         </>
-    )
+    );
 };
 
 const styles = StyleSheet.create({

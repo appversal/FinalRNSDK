@@ -1,15 +1,8 @@
 import React from 'react';
-export interface BannerProps {
-    data: {
-        id: string;
-        details: {
-            image: string;
-            link: string;
-        };
-    };
-    user_id: string;
+import { UserData } from '../sdk';
+export type BannerProps = {
     access_token: string;
-}
+} & UserData;
 declare const Banner: React.FC<BannerProps>;
 export default Banner;
 //# sourceMappingURL=banner.d.ts.map

@@ -1,10 +1,11 @@
-import EncryptedStorage from "react-native-encrypted-storage";
+import EncryptedStorage from 'react-native-encrypted-storage';
+import { UserData } from '../sdk';
 
 interface Attributes {
     [key: string]: any;
 }
 
-export const verifyUser = async (user_id: string, campaigns: any[], attributes?: Attributes) => {
+export const verifyUser = async (user_id: string, campaigns: any[], attributes?: Attributes): Promise<UserData | undefined> => {
     try{
         if (!campaigns || campaigns.length == 0) {
             console.log('No campaigns found');
@@ -16,7 +17,7 @@ export const verifyUser = async (user_id: string, campaigns: any[], attributes?:
         const bodyData: any = {
             user_id : user_id,
             app_id : app_id,
-            campaign_list : campaigns
+            campaign_list : campaigns,
         };
 
         if (attributes) {
@@ -27,7 +28,7 @@ export const verifyUser = async (user_id: string, campaigns: any[], attributes?:
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${access_token}`
+                'Authorization': `Bearer ${access_token}`,
             },
             body: JSON.stringify(bodyData),
         });
@@ -43,5 +44,5 @@ export const verifyUser = async (user_id: string, campaigns: any[], attributes?:
         } catch (error) {
             console.error('Error in trackUser', error);
             return { user_id, campaigns };
-        };
-    }
+        }
+    };

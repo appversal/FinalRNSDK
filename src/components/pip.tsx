@@ -16,34 +16,28 @@ import Video from 'react-native-video';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import { UserActionTrack } from '../utils/trackuseraction'; // Import tracking function
+import { CampaignPip, UserData } from '../sdk';
 
 const { width, height } = Dimensions.get('window');
 
-export interface PipProps {
-  data: {
-    id: string;
-    details: {
-      small_video: string;
-      large_video: string;
-      link: string;
-    };
-  };
-  user_id: string;
+export type PipProps = {
   access_token: string;
-}
+} & UserData
 
-const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
+const Pip: React.FC<PipProps> = ({access_token,campaigns,user_id}) => {
   let pipBottomValue = height > 700 ? (Platform.OS === 'ios' ? 320 : 278) : 285;
 
   const tabBarHeight = useBottomTabBarHeight();
   const navigation = useNavigation();
-  
+
   const [isPipVisible, setPipVisible] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
   const [position, setPosition] = useState({ x: width - 160, y: height - (tabBarHeight + pipBottomValue) });
 
   const translationX = useRef(new Animated.Value(0)).current;
   const translationY = useRef(new Animated.Value(0)).current;
+
+  const data = campaigns.find((val) => val.campaign_type === 'PIP') as CampaignPip;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,11 +99,11 @@ const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
     bottomLeft: { x: 20, y: height - (tabBarHeight + pipBottomValue) },
     bottomRight: { x: width - 160, y: height - (tabBarHeight + pipBottomValue) },
   };
-  
+
   const getNearestCorner = (x: number, y: number) => {
     let nearestCorner = 'topLeft';
     let minDistance = Infinity;
-  
+
     Object.entries(corners).forEach(([corner, coords]) => {
       const distance = Math.sqrt(Math.pow(coords.x - x, 2) + Math.pow(coords.y - y, 2));
       if (distance < minDistance) {
@@ -117,8 +111,8 @@ const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
         minDistance = distance;
       }
     });
-  
-    return corners[nearestCorner]; 
+
+    return corners[nearestCorner];
   };
 
   const animateToCorner = (corner: { x: number; y: number }) => {
@@ -192,7 +186,9 @@ const Pip: React.FC<PipProps> = ({ data, user_id, access_token }) => {
                 }}
               >
                 <TouchableWithoutFeedback onPress={() => {
-                  Linking.openURL(data.details.link);
+                  if (data.details.link) {
+                    Linking.openURL(data.details.link);
+                  }
                   const fetchData = async () => {
                     try {
                       await UserActionTrack(data.id, user_id, 'CLK');

@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Linking, Dimensions } from 'react-native';
 import { UserActionTrack } from '../utils/trackuseraction'; // Import the tracking function
+import { CampaignFloater, UserData } from '../sdk';
 
-export interface FloaterProps {
-  data: {
-    id: string;
-    details: {
-      image: string;
-      link: string;
-    };
-  };
-  user_id: string;
+export type FloaterProps = {
   access_token: string;
-}
+} & UserData
 
-const Floater: React.FC<FloaterProps> = ({ data, user_id, access_token }) => {
+const Floater: React.FC<FloaterProps> = ({ access_token, campaigns, user_id }) => {
   const { width } = Dimensions.get('window');
 
+  const data = campaigns.find((val) => val.campaign_type === 'FLT') as CampaignFloater;
+
   useEffect(() => {
+    if (!data) {
+      return;
+    }
+
     const trackImpression = async () => {
       try {
         await UserActionTrack(user_id, data.id, 'IMP');
@@ -36,7 +35,9 @@ const Floater: React.FC<FloaterProps> = ({ data, user_id, access_token }) => {
           <TouchableOpacity
             activeOpacity={1}
             onPress={async () => {
-              Linking.openURL(data.details.link);
+              if (data.details.link) {
+                Linking.openURL(data.details.link);
+              }
               try {
                 await UserActionTrack(user_id, data.id, 'CLK');
               } catch (error) {

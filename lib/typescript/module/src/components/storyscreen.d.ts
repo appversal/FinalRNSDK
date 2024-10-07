@@ -1,15 +1,16 @@
-import React from 'react';
-interface StoryGroup {
-    ringColor: string;
-    thumbnail: string;
-    name: string;
-}
+import { CampaignStory } from '../sdk';
+type StorySlide = CampaignStory['details'][0]['slides'][0] & {
+    finish: number;
+};
+type StoryGroup = CampaignStory['details'][0] & {
+    slides: StorySlide[];
+};
 export interface StoriesProps {
     data: {
         id: string;
         details: StoryGroup[];
     };
 }
-declare const StoryScreen: React.FC;
-export default StoryScreen;
+export declare const StoryScreen: () => import("react/jsx-runtime").JSX.Element;
+export {};
 //# sourceMappingURL=storyscreen.d.ts.map
