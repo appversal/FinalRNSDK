@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useMemo, useState} from 'react';
 
 import {View, Image, TouchableOpacity, Dimensions, Linking, StyleSheet} from 'react-native';
 
@@ -12,7 +12,7 @@ export type BannerProps = {
 const Banner: React.FC<BannerProps> = ({access_token,campaigns,user_id}) => {
     const [isBannerVisible, setIsBannerVisible] = useState(true);
 
-    const data = campaigns.find((val) => val.campaign_type === 'BAN') as CampaignBanner;
+    const data = useMemo(() => campaigns.find((val) => val.campaign_type === 'BAN') as CampaignBanner, [campaigns]);
 
     useEffect(()=> {
         if(data && data.id) {
@@ -22,6 +22,7 @@ const Banner: React.FC<BannerProps> = ({access_token,campaigns,user_id}) => {
 
     const closeBanner = () => {
         setIsBannerVisible(false);
+        UserActionTrack(user_id, data.id, 'CLK');
     };
 
     const {width, height} = Dimensions.get('window');
