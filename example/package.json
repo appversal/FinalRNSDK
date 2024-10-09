@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@appstorys/appstorys-react-native": "^1.0.14",
+    "@appstorys/appstorys-react-native": "^1.0.15",
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",

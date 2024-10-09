@@ -23,3 +23,6 @@ Be sure you follow all installation instructions:
 ```sh
 npm install @appstorys/appstorys-react-native
 ```
+
+# Publishing new version
+Commit all changes and run `npm run release`
