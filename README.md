@@ -25,4 +25,4 @@ npm install @appstorys/appstorys-react-native
 ```
 
 # Publishing new version
-Commit all changes and run `npm run release`
+Commit all changes and run `npm run prepare && npm run release`
