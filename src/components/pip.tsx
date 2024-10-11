@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  Easing,
   Linking,
   Image,
   Platform,
