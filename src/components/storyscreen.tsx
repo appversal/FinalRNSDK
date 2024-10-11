@@ -45,6 +45,10 @@ export const StoryScreen = () => {
     if (!params) {
       return;
     }
+
+    if(params && params.storyCampaignId) {
+      UserActionTrack(user_id, params.storyCampaignId, 'IMP');
+  }
     const slides = params.storySlideData.slides;
     // Transform the storySlideData to add the 'finish' field to each element
     const transformedData = slides.map((storySlide) => ({
@@ -333,18 +337,19 @@ export const StoryScreen = () => {
               if (typeof content[current]?.link === 'string') {
                 Linking.openURL(content[current]?.link!);
               }
-              const fetchData = async () => {
-                try {
-                  await UserActionTrack(user_id, storyCampaignId, 'CNV');
+              UserActionTrack(user_id, storyCampaignId, 'CLK');
+              // const fetchData = async () => {
+              //   try {
+              //     await UserActionTrack(user_id, storyCampaignId, 'CNV');
 
-                  // console.log(userTrackData);
+              //     // console.log(userTrackData);
 
-                } catch (error) {
-                  console.error('Error in fetching data:', error);
-                }
-              };
+              //   } catch (error) {
+              //     console.error('Error in fetching data:', error);
+              //   }
+              // };
 
-              fetchData();
+              // fetchData();
             }}
           >
             <View style={{

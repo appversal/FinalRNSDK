@@ -10,10 +10,10 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@appstorys/appstorys-react-native@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.npmjs.org/@appstorys/appstorys-react-native/-/appstorys-react-native-1.0.14.tgz"
-  integrity sha512-8+Vx0q+nhF8qb22h+1KHF+kzhPbKTWHr64NThJHeq+K2Dw2Dr/ajLs1VXJ9jAc2dy1uZ0b8/3m2BPR/LT8vu5Q==
+"@appstorys/appstorys-react-native@^1.0.15":
+  version "1.0.16"
+  resolved "https://registry.npmjs.org/@appstorys/appstorys-react-native/-/appstorys-react-native-1.0.16.tgz"
+  integrity sha512-NjrXlLIBlNvR+xZTulNrNutCPSIgMw+KJ+RjSN3VSFsm8UPERZotmj3fqacFbpamUpiMHP1hWfbK7vsOH7qc+A==
   dependencies:
     react "^18.3.1"
     react-native "^0.75.3"
@@ -3667,11 +3667,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
-
-fsevents@^2.3.2:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:
   version "1.1.2"

@@ -20,14 +20,17 @@ const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
   const data = campaigns.find((val) => val.campaign_type === 'STR') as CampaignStory;
 
   function onNavigate(storyGroup: StoryGroup) {
-    UserActionTrack(user_id, data.id, 'CLK').catch((e) => console.log('Error in tracking impression:', e));
+    // UserActionTrack(user_id, data.id, 'CLK').catch((e) => console.log('Error in tracking impression:', e));
     navigation.navigate('StoryScreen', { storySlideData: storyGroup, storyCampaignId: data.id, user_id });
   }
 
   useEffect(() => {
-    if (data?.details && Array.isArray(data.details)) {
-    UserActionTrack(user_id, data.id, 'IMP').catch((e) => console.log('Error in fetching data:', e));
-    }
+    if(data && data.id) {
+      UserActionTrack(user_id, data.id, 'IMP');
+  }
+    // if (data?.details && Array.isArray(data.details)) {
+    // UserActionTrack(user_id, data.id, 'IMP').catch((e) => console.log('Error in fetching data:', e));
+    // }
   }, [data, user_id]);
 
   return (
@@ -37,7 +40,10 @@ const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
           data.details.map((storyGroup, index) => (
             <View key={index} style={styles.storyContainer}>
               <View style={styles.storyWrapper}>
-                <TouchableWithoutFeedback onPress={() => onNavigate(storyGroup)}>
+                <TouchableWithoutFeedback onPress={() => {
+                  onNavigate(storyGroup)
+                  UserActionTrack(user_id, data.id, 'CLK');
+                }}>
                   <View style={[styles.thumbnailContainer, { borderColor: storyGroup.ringColor }]}>
                     <Image source={{ uri: storyGroup.thumbnail }} style={styles.thumbnail} />
                   </View>
@@ -46,11 +52,7 @@ const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
               </View>
             </View>
           ))
-        ) : (
-          <View>
-            <Text style={styles.noDataText}>No data available</Text>
-          </View>
-        )}
+        ) : null}
       </ScrollView>
     </View>
   );
@@ -58,7 +60,7 @@ const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    // backgroundColor: 'green',
     position: 'absolute',
     justifyContent: 'flex-start',
     alignItems: 'center',

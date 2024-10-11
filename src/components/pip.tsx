@@ -40,20 +40,14 @@ const Pip: React.FC<PipProps> = ({access_token,campaigns,user_id}) => {
   const data = campaigns.find((val) => val.campaign_type === 'PIP') as CampaignPip;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await UserActionTrack(user_id, data.id, 'IMP');
-      } catch (error) {
-        console.error('Error in fetching data:', error);
-      }
-    };
-
-    fetchData();
+    if(data && data.id) {
+      UserActionTrack(user_id, data.id, 'IMP');
+  }
     navigation.setOptions({
       tabBarStyle: { display: isExpanded ? 'none' : 'flex' },
       headerShown: !isExpanded,
     });
-  }, [isExpanded, navigation, data.id, user_id, access_token]);
+  }, [isExpanded, navigation, user_id, access_token]);
 
   const closePip = () => {
     setPipVisible(false);
@@ -82,58 +76,58 @@ const Pip: React.FC<PipProps> = ({access_token,campaigns,user_id}) => {
       const { translationX: tx, translationY: ty } = event.nativeEvent;
       const newX = position.x + tx;
       const newY = position.y + ty;
-      const nearestCorner = getNearestCorner(newX, newY);
-      if (!nearestCorner) {
-        return;
-      }
-      animateToCorner(nearestCorner);
-      setPosition(nearestCorner);
+      // const nearestCorner = getNearestCorner(newX, newY);
+      // if (!nearestCorner) {
+      //   return;
+      // }
+      // animateToCorner(nearestCorner);
+      setPosition({x: newX, y: newY});
       translationX.setValue(0);
       translationY.setValue(0);
     }
   };
 
-  const corners: { [key: string]: { x: number; y: number } } = {
-    topLeft: { x: 20, y: 20 },
-    topRight: { x: width - 160, y: 20 },
-    bottomLeft: { x: 20, y: height - (tabBarHeight + pipBottomValue) },
-    bottomRight: { x: width - 160, y: height - (tabBarHeight + pipBottomValue) },
-  };
+  // const corners: { [key: string]: { x: number; y: number } } = {
+  //   topLeft: { x: 20, y: 20 },
+  //   topRight: { x: width - 160, y: 20 },
+  //   bottomLeft: { x: 20, y: height - (tabBarHeight + pipBottomValue) },
+  //   bottomRight: { x: width - 160, y: height - (tabBarHeight + pipBottomValue) },
+  // };
 
-  const getNearestCorner = (x: number, y: number) => {
-    let nearestCorner = 'topLeft';
-    let minDistance = Infinity;
+  // const getNearestCorner = (x: number, y: number) => {
+  //   let nearestCorner = 'topLeft';
+  //   let minDistance = Infinity;
 
-    Object.entries(corners).forEach(([corner, coords]) => {
-      const distance = Math.sqrt(Math.pow(coords.x - x, 2) + Math.pow(coords.y - y, 2));
-      if (distance < minDistance) {
-        nearestCorner = corner;
-        minDistance = distance;
-      }
-    });
+  //   Object.entries(corners).forEach(([corner, coords]) => {
+  //     const distance = Math.sqrt(Math.pow(coords.x - x, 2) + Math.pow(coords.y - y, 2));
+  //     if (distance < minDistance) {
+  //       nearestCorner = corner;
+  //       minDistance = distance;
+  //     }
+  //   });
 
-    return corners[nearestCorner];
-  };
+  //   return corners[nearestCorner];
+  // };
 
-  const animateToCorner = (corner: { x: number; y: number }) => {
-    Animated.timing(translationX, {
-      toValue: corner.x - position.x,
-      duration: 500,
-      easing: Easing.inOut(Easing.ease),
-      useNativeDriver: true,
-    }).start();
+  // const animateToCorner = (corner: { x: number; y: number }) => {
+  //   Animated.timing(translationX, {
+  //     toValue: corner.x - position.x,
+  //     duration: 500,
+  //     easing: Easing.inOut(Easing.ease),
+  //     useNativeDriver: true,
+  //   }).start();
 
-    Animated.timing(translationY, {
-      toValue: corner.y - position.y,
-      duration: 500,
-      easing: Easing.inOut(Easing.ease),
-      useNativeDriver: true,
-    }).start();
-  };
+  //   Animated.timing(translationY, {
+  //     toValue: corner.y - position.y,
+  //     duration: 500,
+  //     easing: Easing.inOut(Easing.ease),
+  //     useNativeDriver: true,
+  //   }).start();
+  // };
 
   return (
     <GestureHandlerRootView>
-      {isPipVisible && (
+      {data && isPipVisible && (
         <PanGestureHandler onGestureEvent={isExpanded ? undefined : onPanGestureEvent} onHandlerStateChange={isExpanded ? undefined : onHandlerStateChange}>
           <Animated.View
             style={[
@@ -189,14 +183,15 @@ const Pip: React.FC<PipProps> = ({access_token,campaigns,user_id}) => {
                   if (data.details.link) {
                     Linking.openURL(data.details.link);
                   }
-                  const fetchData = async () => {
-                    try {
-                      await UserActionTrack(data.id, user_id, 'CLK');
-                    } catch (error) {
-                      console.error('Error in fetching data:', error);
-                    }
-                  };
-                  fetchData();
+                  UserActionTrack(user_id, data.id, 'CLK');
+                  // const fetchData = async () => {
+                  //   try {
+                  //     await UserActionTrack(data.id, user_id, 'CLK');
+                  //   } catch (error) {
+                  //     console.error('Error in fetching data:', error);
+                  //   }
+                  // };
+                  // fetchData();
                 }}>
                   <Text style={{ color: 'black', fontWeight: '500' }}>Continue</Text>
                 </TouchableWithoutFeedback>
