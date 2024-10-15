@@ -22,7 +22,7 @@ const Banner: React.FC<BannerProps> = ({access_token,campaigns,user_id}) => {
 
     const closeBanner = () => {
         setIsBannerVisible(false);
-        UserActionTrack(user_id, data.id, 'CLK');
+        // UserActionTrack(user_id, data.id, 'CLK');
     };
 
     const {width, height} = Dimensions.get('window');
@@ -59,13 +59,15 @@ const styles = StyleSheet.create({
         bottom: 0,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        marginBottom: 16,
+        zIndex: 10,  // Ensure the banner is on top
       },
       banner: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backgroundColor: 'rgba(0, 0, 0, 1)',
         position: 'absolute',
-        bottom: 16,
+        // bottom: 16,
         overflow: 'visible',
       },
       bannerImage: {
@@ -75,11 +77,11 @@ const styles = StyleSheet.create({
       },
       closeButton: {
         position: 'absolute',
-        top: -5,
-        right: -5,
+        top: -6,
+        right: -6,
         backgroundColor: 'black',
         borderRadius: 15,
-        padding: 4.5,
+        padding: 6,
         justifyContent: 'center',
         alignItems: 'center',
       },

@@ -36,15 +36,24 @@ const shareImage = require('../assets/images/share.png');
 export const StoryScreen = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   navigation.setOptions;
-  const {params} = useRoute<RouteProp<RootStackParamList, 'StoryScreen'>>();
+  const { params } = useRoute<RouteProp<RootStackParamList, 'StoryScreen'>>();
   const { height, width } = Dimensions.get('window');
 
   const [content, setContent] = useState<StorySlide[]>([]);
 
+  const [currentStorySlide, setCurrentStorySlide] = useState(0);
+
   useEffect(() => {
+
+    setCurrentStorySlide(0);
+
     if (!params) {
       return;
     }
+
+    // if (params && params.storyCampaignId) {
+    //   UserActionTrack(user_id, params.storyCampaignId, 'IMP', params.storySlideData.slides[currentStorySlide].id);
+    // }
     const slides = params.storySlideData.slides;
     // Transform the storySlideData to add the 'finish' field to each element
     const transformedData = slides.map((storySlide) => ({
@@ -62,7 +71,6 @@ export const StoryScreen = () => {
 
 
   const [current, setCurrent] = useState(0);
-  console.log(JSON.stringify(content[current], null, 2));
   const [, setVideoDuration] = useState(5); // Default to 5 seconds for fallback
 
   // Share function
@@ -81,6 +89,13 @@ export const StoryScreen = () => {
 
   const start = (duration: number) => {
 
+    if (params?.storySlideData?.slides?.[currentStorySlide]?.id !== undefined) {
+      if (params?.storyCampaignId) {
+        UserActionTrack(user_id, params.storyCampaignId, 'IMP', params.storySlideData.slides[currentStorySlide].id);
+        setCurrentStorySlide(currentStorySlide + 1);
+      }
+    }
+
     console.log(`Starting animation for ${duration / 1000} seconds`);
 
     Animated.timing(progress, {
@@ -95,18 +110,8 @@ export const StoryScreen = () => {
   };
 
   const next = () => {
-    const fetchData = async () => {
-      try {
-        await UserActionTrack(params.user_id, params.storyCampaignId, 'IMP');
 
-        // console.log(userTrackData);
-
-      } catch (error) {
-        console.error('Error in fetching data:', error);
-      }
-    };
-
-    fetchData();
+    console.log("shcuids"+currentStorySlide);
 
     if (current !== content.length - 1) {
       let tempData = [...content];
@@ -123,6 +128,9 @@ export const StoryScreen = () => {
   };
 
   const previous = () => {
+    if(currentStorySlide> 0){
+      setCurrentStorySlide(currentStorySlide - 1);
+    }
     if (current - 1 >= 0) {
       let tempData = [...content];
       if (tempData[current]) {
@@ -154,13 +162,13 @@ export const StoryScreen = () => {
 
   if (!params) {
     return (
-      <View style={{backgroundColor: 'black'}}>
-        <Text style={{color: 'white',fontSize: 14}}>No data available</Text>
+      <View style={{ backgroundColor: 'black' }}>
+        <Text style={{ color: 'white', fontSize: 14 }}>No data available</Text>
       </View>
     );
   }
 
-  const {storyCampaignId,storySlideData,user_id} = params;
+  const { storyCampaignId, storySlideData, user_id } = params;
 
   return (
     <View style={{
@@ -333,18 +341,21 @@ export const StoryScreen = () => {
               if (typeof content[current]?.link === 'string') {
                 Linking.openURL(content[current]?.link!);
               }
-              const fetchData = async () => {
-                try {
-                  await UserActionTrack(user_id, storyCampaignId, 'CNV');
+              if (params && params.storyCampaignId) {
+                UserActionTrack(user_id, params.storyCampaignId, 'CLK', params.storySlideData.slides[currentStorySlide].id);
+              }
+              // const fetchData = async () => {
+              //   try {
+              //     await UserActionTrack(user_id, storyCampaignId, 'CNV');
 
-                  // console.log(userTrackData);
+              //     // console.log(userTrackData);
 
-                } catch (error) {
-                  console.error('Error in fetching data:', error);
-                }
-              };
+              //   } catch (error) {
+              //     console.error('Error in fetching data:', error);
+              //   }
+              // };
 
-              fetchData();
+              // fetchData();
             }}
           >
             <View style={{
