@@ -3,6 +3,11 @@ export type StoryGroup = {
     thumbnail: string;
     name: string;
 };
+export type StoryGroupData = {
+    ringColor: string;
+    thumbnail: string;
+    name: string;
+};
 export type CampaignFloater = {
     id: string;
     campaign_type: 'FLT';

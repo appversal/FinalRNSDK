@@ -1,8 +1,8 @@
-import { CampaignStory } from '../sdk';
-type StorySlide = CampaignStory['details'][0]['slides'][0] & {
+import { CampaignStory } from "../sdk";
+type StorySlide = CampaignStory["details"][0]["slides"][0] & {
     finish: number;
 };
-type StoryGroup = CampaignStory['details'][0] & {
+type StoryGroup = CampaignStory["details"][0] & {
     slides: StorySlide[];
 };
 export interface StoriesProps {

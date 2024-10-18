@@ -1,1 +1,1 @@
-{"version":3,"file":"trackuseraction.d.ts","sourceRoot":"","sources":["../../../../../src/utils/trackuseraction.tsx"],"names":[],"mappings":"AAGA,KAAK,UAAU,GAAG,KAAK,GAAG,KAAK,GAAG,KAAK,CAAA;AACvC,eAAO,MAAM,eAAe,YAAmB,MAAM,eAAe,MAAM,cAAc,UAAU,kBAwBjG,CAAA"}
+{"version":3,"file":"trackuseraction.d.ts","sourceRoot":"","sources":["../../../../../src/utils/trackuseraction.tsx"],"names":[],"mappings":"AAEA,KAAK,UAAU,GAAG,KAAK,GAAG,KAAK,GAAG,KAAK,CAAC;AAExC,eAAO,MAAM,eAAe,YACf,MAAM,eACF,MAAM,cACP,UAAU,gBACR,MAAM,kBAmCvB,CAAC"}
