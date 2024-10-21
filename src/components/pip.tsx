@@ -44,7 +44,7 @@ const Pip: React.FC<PipProps> = ({access_token,campaigns,user_id}) => {
   }
     navigation.setOptions({
       tabBarStyle: { display: isExpanded ? 'none' : 'flex' },
-      headerShown: !isExpanded,
+      headerShown: false,
     });
   }, [isExpanded, navigation, user_id, access_token]);
 

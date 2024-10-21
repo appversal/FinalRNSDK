@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     justifyContent: 'flex-end',
-    zIndex: 10,  // Ensure the banner is on top
+    // zIndex: 10,  // Ensure the banner is on top
   },
   image: {
     width: '100%',

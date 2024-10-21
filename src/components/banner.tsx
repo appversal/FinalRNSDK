@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         marginBottom: 16,
-        zIndex: 10,  // Ensure the banner is on top
+        // zIndex: 10,  // Ensure the banner is on top
       },
       banner: {
         alignItems: 'center',
