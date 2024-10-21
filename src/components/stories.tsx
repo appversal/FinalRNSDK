@@ -25,9 +25,9 @@ const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
   }
 
   useEffect(() => {
-    if(data && data.id) {
+    if (data && data.id) {
       UserActionTrack(user_id, data.id, 'IMP');
-  }
+    }
     // if (data?.details && Array.isArray(data.details)) {
     // UserActionTrack(user_id, data.id, 'IMP').catch((e) => console.log('Error in fetching data:', e));
     // }
@@ -48,13 +48,20 @@ const Stories: React.FC<UserData> = ({ campaigns, user_id }) => {
                     <Image source={{ uri: storyGroup.thumbnail }} style={styles.thumbnail} />
                   </View>
                 </TouchableWithoutFeedback>
-                <Text style={styles.storyName}>{storyGroup.name}</Text>
+                <Text style={{
+                  marginTop: 6,
+                  fontSize: 14,
+                  fontWeight: '500',
+                  color: storyGroup.nameColor,
+                  textAlign: 'center',
+                }}
+                >{storyGroup.name}</Text>
               </View>
             </View>
           ))
         ) : null}
-      </ScrollView>
-    </View>
+      </ScrollView >
+    </View >
   );
 };
 
@@ -92,13 +99,6 @@ const styles = StyleSheet.create({
     height: 65,
     borderRadius: 35,
     overflow: 'hidden',
-  },
-  storyName: {
-    marginTop: 6,
-    fontSize: 14,
-    fontWeight: '500',
-    color: 'white',
-    textAlign: 'center',
   },
   noDataText: {
     color: 'white',

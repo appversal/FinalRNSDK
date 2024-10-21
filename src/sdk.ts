@@ -40,6 +40,7 @@ export type CampaignStory = {
       name: string,
       thumbnail: string,
       ringColor: string,
+      nameColor: string,
       order: number,
       slides: [
         {
