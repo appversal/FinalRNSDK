@@ -404,7 +404,8 @@ export const StoryScreen = () => {
                     user_id,
                     params.storyCampaignId,
                     "CLK",
-                    params.storySlideData.slides[currentStorySlide]?.id ?? "",
+                    // params.storySlideData.slides[currentStorySlide]?.id ?? "",
+                    content[current]?.id!,
                   );
                 }
                 // const fetchData = async () => {
