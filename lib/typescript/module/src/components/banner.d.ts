@@ -1,5 +1,5 @@
-import React from 'react';
-import { UserData } from '../sdk';
+import React from "react";
+import { UserData } from "../sdk";
 export type BannerProps = {
     access_token: string;
 } & UserData;

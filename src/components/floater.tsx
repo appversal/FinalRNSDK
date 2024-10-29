@@ -29,7 +29,7 @@ const Floater: React.FC<FloaterProps> = ({
   const [imagePath, setImagePath] = React.useState<string | null>(null);
 
   const downloadImage = async (url: string) => {
-    const filename = url.split("/").pop();
+    const filename = url.split("/").pop()?.split("?")[0];
     try {
       const downloadResult = await RNFS.downloadFile({
         fromUrl: url,
@@ -46,7 +46,7 @@ const Floater: React.FC<FloaterProps> = ({
   };
 
   const checkCacheForImage = async (url: string) => {
-    const filename = url.split("/").pop();
+    const filename = url.split("/").pop()?.split("?")[0];
     const path = `${RNFS.DocumentDirectoryPath}/${filename}`;
     try {
       const exists = await RNFS.exists(path);

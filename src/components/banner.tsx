@@ -26,7 +26,7 @@ const Banner: React.FC<BannerProps> = ({
   const [imagePath, setImagePath] = useState<string | null>(null);
 
   const downloadImage = async (url: string) => {
-    const filename = url.split("/").pop();
+    const filename = url.split("/").pop()?.split("?")[0];
     try {
       const downloadResult = await RNFS.downloadFile({
         fromUrl: url,
@@ -43,7 +43,7 @@ const Banner: React.FC<BannerProps> = ({
   };
 
   const checkCacheForImage = async (url: string) => {
-    const filename = url.split("/").pop();
+    const filename = url.split("/").pop()?.split("?")[0];
     const path = `${RNFS.DocumentDirectoryPath}/${filename}`;
     try {
       const exists = await RNFS.exists(path);

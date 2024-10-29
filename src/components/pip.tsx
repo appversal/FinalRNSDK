@@ -71,7 +71,7 @@ const Pip: React.FC<PipProps> = ({ access_token, campaigns, user_id }) => {
 
   const checkAndDownloadSmallVideo = async (url: string) => {
     try {
-      const filename = url.split("/").pop() as string;
+      const filename = url.split("/").pop()?.split("?")[0] as string;
 
       const fileExists = await RNFS.exists(
         `${RNFS.DocumentDirectoryPath}/${filename}`,
@@ -89,7 +89,7 @@ const Pip: React.FC<PipProps> = ({ access_token, campaigns, user_id }) => {
   };
   const checkAndDownloadLargeVideo = async (url: string) => {
     try {
-      const filename = url.split("/").pop() as string;
+      const filename = url.split("/").pop()?.split("?")[0] as string;
 
       const fileExists = await RNFS.exists(
         `${RNFS.DocumentDirectoryPath}/${filename}`,
